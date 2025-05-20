@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  pytorch-vit:
+    container_name: pytorch-vit
+    runtime: nvidia
+    image: pytorch-vit
+    build: .
+    ipc: host
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/app
+      # - ./data:/workspace/dataK
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+   
+    command: jupyter notebook --allow-root --ip=0.0.0.0 --no-browser --NotebookApp.token=abc123
